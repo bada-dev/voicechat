@@ -7,225 +7,133 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
 <style>
   :root{
-    --casing:#212327;
-    --casing-2:#191a1d;
-    --edge:#0d0e10;
-    --panel:#2a2c31;
-    --panel-hi:#34373d;
-    --screen:#0c0a06;
-    --phosphor:#ffb020;
-    --phosphor-soft:#c98418;
-    --phosphor-dim:#5a3e12;
-    --teal:#2fd4bf;
-    --danger:#ff5a52;
-    --text:#e9e6df;
-    --muted:#8a8c92;
-    --line:#000;
-    --r:14px;
+    --casing:#212327; --casing-2:#191a1d; --edge:#0d0e10;
+    --panel:#2a2c31; --panel-hi:#34373d; --screen:#0c0a06;
+    --phosphor:#ffb020; --phosphor-soft:#c98418; --phosphor-dim:#5a3e12;
+    --teal:#2fd4bf; --danger:#ff5a52; --text:#e9e6df; --muted:#8a8c92;
   }
   *{box-sizing:border-box}
   html,body{margin:0;height:100%}
   body{
-    font-family:"Chakra Petch",system-ui,sans-serif;
-    color:var(--text);
-    background:
-      radial-gradient(120% 90% at 50% -10%, #26282d 0%, #131417 55%, #0a0b0d 100%);
-    min-height:100dvh;
-    display:grid;
-    place-items:center;
-    padding:24px 16px calc(24px + env(safe-area-inset-bottom));
-    -webkit-font-smoothing:antialiased;
+    font-family:"Chakra Petch",system-ui,sans-serif;color:var(--text);
+    background:radial-gradient(120% 90% at 50% -10%, #26282d 0%, #131417 55%, #0a0b0d 100%);
+    min-height:100dvh;display:grid;place-items:center;
+    padding:26px 16px calc(26px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased;
   }
-
-  /* ---------- device ---------- */
   .device{
-    width:min(480px,100%);
+    width:min(600px,100%);
     background:linear-gradient(180deg,var(--casing) 0%, var(--casing-2) 100%);
-    border-radius:26px;
-    padding:16px 16px 14px;
-    border:1px solid #33353b;
-    box-shadow:
-      0 1px 0 #3f4147 inset,
-      0 -18px 40px rgba(0,0,0,.45) inset,
-      0 30px 60px -20px rgba(0,0,0,.8),
-      0 2px 0 var(--edge);
-    position:relative;
+    border-radius:30px;padding:20px 20px 16px;border:1px solid #33353b;position:relative;
+    box-shadow:0 1px 0 #3f4147 inset,0 -18px 40px rgba(0,0,0,.45) inset,0 34px 70px -20px rgba(0,0,0,.8),0 2px 0 var(--edge);
   }
-  /* subtle screw dots */
-  .device::before,.device::after{
-    content:"";position:absolute;width:7px;height:7px;border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #4a4d54, #1a1b1e 70%);
-    box-shadow:0 1px 0 #000;
-    top:10px;
-  }
-  .device::before{left:12px}
-  .device::after{right:12px}
-
-  /* ---------- bezel / brand plate ---------- */
-  .bezel{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:6px 8px 12px;
-  }
-  .leds{display:flex;gap:7px;align-items:center;padding-left:10px}
-  .led{width:9px;height:9px;border-radius:50%;background:#3a3c41;box-shadow:0 0 0 1px #000 inset}
-  .led.pwr{background:var(--teal);box-shadow:0 0 8px var(--teal),0 0 0 1px #000 inset}
-  .led.tx.on{background:var(--phosphor);box-shadow:0 0 9px var(--phosphor),0 0 0 1px #000 inset}
-  .led.err.on{background:var(--danger);box-shadow:0 0 9px var(--danger),0 0 0 1px #000 inset}
-  .plate{
-    text-align:right;line-height:1;
-  }
-  .plate .model{
-    font-weight:700;letter-spacing:.14em;font-size:13px;color:#d7d4cd;
-  }
-  .plate .sub{
-    font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:.18em;color:var(--muted);margin-top:3px;
-  }
-
-  /* ---------- screen ---------- */
+  .device::before,.device::after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #4a4d54, #1a1b1e 70%);box-shadow:0 1px 0 #000;top:12px}
+  .device::before{left:14px}.device::after{right:14px}
+  .bezel{display:flex;align-items:center;justify-content:space-between;padding:6px 8px 14px}
+  .leds{display:flex;gap:8px;align-items:center;padding-left:12px}
+  .led{width:10px;height:10px;border-radius:50%;background:#3a3c41;box-shadow:0 0 0 1px #000 inset}
+  .led.pwr{background:var(--teal);box-shadow:0 0 9px var(--teal),0 0 0 1px #000 inset}
+  .led.tx.on{background:var(--phosphor);box-shadow:0 0 10px var(--phosphor),0 0 0 1px #000 inset}
+  .led.err.on{background:var(--danger);box-shadow:0 0 10px var(--danger),0 0 0 1px #000 inset}
+  .plate{text-align:right;line-height:1}
+  .plate .model{font-weight:700;letter-spacing:.14em;font-size:16px;color:#d7d4cd}
+  .plate .sub{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.18em;color:var(--muted);margin-top:4px}
   .screen{
-    position:relative;
-    background:
-      radial-gradient(120% 130% at 50% 0%, #1a1408 0%, var(--screen) 70%);
-    border-radius:10px;
-    padding:14px 15px;
-    min-height:150px;
-    border:1px solid #000;
-    box-shadow:0 2px 14px rgba(0,0,0,.6) inset, 0 0 0 3px #16171a, 0 1px 0 #3a3c42;
-    overflow:hidden;
-    font-family:"Space Mono",monospace;
+    position:relative;background:radial-gradient(120% 130% at 50% 0%, #1a1408 0%, var(--screen) 70%);
+    border-radius:12px;padding:18px 18px;min-height:150px;border:1px solid #000;overflow:hidden;font-family:"Space Mono",monospace;
+    box-shadow:0 2px 14px rgba(0,0,0,.6) inset,0 0 0 3px #16171a,0 1px 0 #3a3c42;
   }
-  .screen::after{ /* scanlines */
-    content:"";position:absolute;inset:0;pointer-events:none;border-radius:10px;
-    background:repeating-linear-gradient(0deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.16) 2px 3px);
-    mix-blend-mode:multiply;opacity:.6;
-  }
-  .screen::before{ /* glass glare */
-    content:"";position:absolute;inset:0;pointer-events:none;border-radius:10px;
-    background:linear-gradient(120deg, rgba(255,255,255,.06), rgba(255,255,255,0) 40%);
-  }
-  .scr-line{color:var(--phosphor);text-shadow:0 0 8px rgba(255,176,32,.55);font-size:12.5px;letter-spacing:.02em}
-  .scr-dim{color:var(--phosphor-dim);font-size:11px}
-  #bootlog{white-space:pre-wrap;line-height:1.5;font-size:11.5px;color:var(--phosphor-soft);text-shadow:0 0 6px rgba(255,176,32,.35);min-height:120px}
+  .screen::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:12px;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.16) 2px 3px);mix-blend-mode:multiply;opacity:.55}
+  .screen::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:12px;
+    background:linear-gradient(120deg, rgba(255,255,255,.06), rgba(255,255,255,0) 40%)}
+  #bootlog{white-space:pre-wrap;line-height:1.55;font-size:13px;color:var(--phosphor-soft);text-shadow:0 0 6px rgba(255,176,32,.35);min-height:120px}
   #bootlog .ok{color:var(--teal);text-shadow:0 0 6px rgba(47,212,191,.4)}
-  #bootlog .cur{animation:blink 1s steps(1) infinite}
-  @keyframes blink{50%{opacity:0}}
-
   .live-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-  #statusLine{font-weight:700;font-size:13px}
+  #statusLine{font-weight:700;font-size:15px}
   #statusLine.good{color:var(--teal);text-shadow:0 0 8px rgba(47,212,191,.5)}
-  #statusLine.warn{color:var(--phosphor)}
+  #statusLine.warn{color:var(--phosphor);text-shadow:0 0 8px rgba(255,176,32,.4)}
   #statusLine.bad{color:var(--danger);text-shadow:0 0 8px rgba(255,90,82,.5)}
-  .rtt{color:var(--phosphor);text-shadow:0 0 8px rgba(255,176,32,.5);font-size:12.5px;white-space:nowrap}
-  .rtt b{font-size:16px}
-  .metricrow{display:flex;justify-content:space-between;margin-top:10px;font-size:10.5px;color:var(--phosphor-dim)}
-  /* VU meter */
-  #vu{display:flex;gap:3px;align-items:flex-end;height:26px;margin-top:8px}
-  #vu i{flex:1;height:20%;background:linear-gradient(180deg,var(--phosphor),var(--phosphor-soft));border-radius:1px;opacity:.28;transition:height .06s linear, opacity .06s linear}
-  #vu.muted i{background:var(--danger);opacity:.22 !important;height:12% !important}
-
-  /* ---------- stage / controls ---------- */
-  .stage{padding:14px 4px 4px}
-  .hidden{display:none !important}
-
-  .prompt{font-size:12.5px;color:var(--muted);margin:0 0 12px;line-height:1.45;letter-spacing:.01em}
+  .rtt{color:var(--phosphor);text-shadow:0 0 8px rgba(255,176,32,.5);font-size:14px;white-space:nowrap}
+  .rtt b{font-size:18px}
+  .metricrow{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--phosphor-dim)}
+  .vu{display:flex;gap:3px;align-items:flex-end;height:30px;margin-top:10px}
+  .vu i{flex:1;height:20%;background:linear-gradient(180deg,var(--phosphor),var(--phosphor-soft));border-radius:1px;opacity:.3;transition:height .06s linear,opacity .06s linear}
+  .vu.muted i{background:var(--danger)!important;opacity:.22!important;height:12%!important}
+  #codeShow{text-align:center}
+  #codeShow .k{font-size:13px;letter-spacing:.2em;color:var(--phosphor-dim);text-transform:uppercase}
+  #codeShow .code{font-size:46px;font-weight:700;letter-spacing:.22em;color:var(--phosphor);text-shadow:0 0 16px rgba(255,176,32,.55);margin:6px 0 2px}
+  #codeShow .wait{font-size:12px;color:var(--phosphor-soft);margin-top:8px}
+  .stage{padding:16px 4px 4px}
+  .hidden{display:none!important}
+  .prompt{font-size:14px;color:var(--muted);margin:0 0 14px;line-height:1.5}
   .prompt b{color:var(--text);font-weight:600}
-
-  .row{display:flex;gap:10px}
-  .btn{
-    appearance:none;cursor:pointer;font-family:inherit;font-weight:600;letter-spacing:.08em;
-    text-transform:uppercase;font-size:12.5px;color:#e8e6df;
-    background:linear-gradient(180deg,var(--panel-hi),var(--panel));
-    border:1px solid #3d4047;border-radius:11px;padding:13px 14px;flex:1;
-    box-shadow:0 1px 0 #4a4d54 inset,0 3px 0 var(--edge),0 6px 12px -6px rgba(0,0,0,.6);
-    transition:transform .04s ease, box-shadow .04s ease, background .15s;
-  }
+  .row{display:flex;gap:12px}
+  .btn{appearance:none;cursor:pointer;font-family:inherit;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:14px;color:#e8e6df;
+    background:linear-gradient(180deg,var(--panel-hi),var(--panel));border:1px solid #3d4047;border-radius:12px;padding:15px 16px;flex:1;
+    box-shadow:0 1px 0 #4a4d54 inset,0 3px 0 var(--edge),0 6px 12px -6px rgba(0,0,0,.6);transition:transform .04s,box-shadow .04s,background .15s}
   .btn:hover{background:linear-gradient(180deg,#3b3e44,#2f3237)}
   .btn:active{transform:translateY(2px);box-shadow:0 1px 0 #4a4d54 inset,0 1px 0 var(--edge)}
   .btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
   .btn.go{color:#062b27;background:linear-gradient(180deg,#4be6d3,#25b6a6);border-color:#1c8f83;box-shadow:0 1px 0 #7ff2e5 inset,0 3px 0 #0c6a60,0 6px 14px -6px rgba(47,212,191,.5)}
   .btn.go:hover{background:linear-gradient(180deg,#57ecda,#28c1b0)}
-  .btn.ghost{background:transparent;border-color:#3a3c42;box-shadow:none;color:var(--muted);flex:0 0 auto;padding:12px 16px}
+  .btn.ghost{background:transparent;border-color:#3a3c42;box-shadow:none;color:var(--muted);flex:0 0 auto;padding:14px 18px}
   .btn.ghost:hover{color:var(--text);border-color:#54575e}
+  .btn.sm{font-size:12px;padding:11px 12px}
   .btn[disabled]{opacity:.4;cursor:not-allowed;transform:none}
-
-  .field{margin:0 0 12px}
-  .field label{display:flex;align-items:center;gap:8px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--phosphor-soft);margin-bottom:6px}
-  .field label .tag{font-family:"Space Mono",monospace;background:#000;color:var(--phosphor);padding:1px 6px;border-radius:4px;font-size:10px;letter-spacing:.1em}
-  textarea{
-    width:100%;resize:none;height:70px;font-family:"Space Mono",monospace;font-size:11px;line-height:1.35;
-    color:#cfe9e4;background:#0d0f11;border:1px solid #2c2f34;border-radius:10px;padding:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.4) inset;word-break:break-all;
-  }
-  textarea::placeholder{color:#4a4d52}
-  textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 2px rgba(47,212,191,.25),0 2px 8px rgba(0,0,0,.4) inset}
-  textarea[readonly]{color:var(--phosphor);border-color:#39301c}
-
-  /* ---------- big transmit / mute button ---------- */
-  .txwrap{padding:6px 4px 2px;display:flex;justify-content:center}
-  #muteBtn{
-    position:relative;width:100%;max-width:230px;height:96px;border-radius:20px;cursor:pointer;
-    font-family:inherit;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:15px;
-    color:#1a1305;border:1px solid #7a5a16;
+  .gearrow{display:flex;justify-content:flex-end;margin-bottom:10px}
+  .gear{appearance:none;background:transparent;border:1px solid #3a3c42;color:var(--muted);border-radius:10px;padding:8px 12px;font-family:inherit;font-size:12px;letter-spacing:.06em;cursor:pointer;display:flex;gap:7px;align-items:center}
+  .gear:hover{color:var(--text);border-color:#54575e}
+  .gear svg{width:15px;height:15px;fill:currentColor}
+  .field{margin:0 0 14px}
+  .field > label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--phosphor-soft);margin-bottom:7px}
+  select,input.code{width:100%;font-family:"Space Mono",monospace;font-size:14px;color:#dfeeeb;background:#0d0f11;border:1px solid #2c2f34;border-radius:10px;padding:12px 11px;box-shadow:0 2px 8px rgba(0,0,0,.4) inset}
+  select:focus,input.code:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 2px rgba(47,212,191,.25),0 2px 8px rgba(0,0,0,.4) inset}
+  input.code{text-transform:uppercase;letter-spacing:.32em;font-size:26px;font-weight:700;text-align:center;color:var(--phosphor)}
+  input.code::placeholder{color:#3f3620;letter-spacing:.2em}
+  .toggle{display:flex;align-items:center;gap:12px;background:#17181b;border:1px solid #2c2f34;border-radius:10px;padding:11px 13px;margin:0 0 14px}
+  .toggle .lab{flex:1;font-size:13px}
+  .toggle .lab small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+  .switch{position:relative;width:46px;height:26px;flex:0 0 auto}
+  .switch input{opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+  .switch .sl{position:absolute;inset:0;background:#3a3c42;border-radius:20px;transition:.15s;pointer-events:none}
+  .switch .sl::before{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#d7d4cd;border-radius:50%;transition:.15s}
+  .switch input:checked + .sl{background:var(--teal)}
+  .switch input:checked + .sl::before{transform:translateX(20px);background:#062b27}
+  .txwrap{padding:8px 4px 2px;display:flex;justify-content:center}
+  #muteBtn{position:relative;width:100%;max-width:280px;height:108px;border-radius:22px;cursor:pointer;
+    font-family:inherit;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1a1305;border:1px solid #7a5a16;
     background:radial-gradient(120% 130% at 50% 0%, #ffcf5c 0%, #f6a81f 45%, #c9820f 100%);
-    box-shadow:
-      0 2px 0 #ffe29a inset,
-      0 -6px 14px rgba(0,0,0,.35) inset,
-      0 8px 0 #7a4e08,
-      0 18px 30px -12px rgba(255,176,32,.55);
-    transition:transform .05s ease, box-shadow .05s ease, filter .15s;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-  }
-  #muteBtn .lbl{font-size:16px}
-  #muteBtn .hint{font-size:9.5px;font-weight:600;letter-spacing:.16em;opacity:.7;font-family:"Space Mono",monospace}
-  #muteBtn:active{transform:translateY(6px);box-shadow:0 2px 0 #ffe29a inset,0 -6px 14px rgba(0,0,0,.35) inset,0 2px 0 #7a4e08}
+    box-shadow:0 2px 0 #ffe29a inset,0 -6px 14px rgba(0,0,0,.35) inset,0 9px 0 #7a4e08,0 20px 34px -12px rgba(255,176,32,.55);
+    transition:transform .05s,box-shadow .05s,filter .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+  #muteBtn .lbl{font-size:19px}
+  #muteBtn .hint{font-size:11px;font-weight:600;letter-spacing:.16em;opacity:.7;font-family:"Space Mono",monospace}
+  #muteBtn:active{transform:translateY(7px);box-shadow:0 2px 0 #ffe29a inset,0 -6px 14px rgba(0,0,0,.35) inset,0 2px 0 #7a4e08}
   #muteBtn:focus-visible{outline:3px solid #fff;outline-offset:3px}
-  /* muted state */
-  #muteBtn.muted{
-    color:#3a0f0d;border-color:#7a201c;
-    background:radial-gradient(120% 130% at 50% 0%, #ff8f88 0%, #f0524a 45%, #b83029 100%);
-    box-shadow:0 2px 0 #ffb3ad inset,0 -6px 14px rgba(0,0,0,.4) inset,0 8px 0 #6e1a15,0 18px 30px -12px rgba(255,90,82,.5);
-  }
-  /* locked (not connected) */
-  #muteBtn.locked{
-    color:#6a6c70;border-color:#33353a;cursor:not-allowed;
-    background:linear-gradient(180deg,#2f3237,#232529);
-    box-shadow:0 1px 0 #3d4046 inset,0 6px 0 var(--edge);
-  }
-  #muteBtn.locked:active{transform:none;box-shadow:0 1px 0 #3d4046 inset,0 6px 0 var(--edge)}
+  #muteBtn.muted{color:#3a0f0d;border-color:#7a201c;background:radial-gradient(120% 130% at 50% 0%, #ff8f88 0%, #f0524a 45%, #b83029 100%);
+    box-shadow:0 2px 0 #ffb3ad inset,0 -6px 14px rgba(0,0,0,.4) inset,0 9px 0 #6e1a15,0 20px 34px -12px rgba(255,90,82,.5)}
+  #muteBtn.locked{color:#6a6c70;border-color:#33353a;cursor:not-allowed;background:linear-gradient(180deg,#2f3237,#232529);box-shadow:0 1px 0 #3d4046 inset,0 7px 0 var(--edge)}
+  #muteBtn.locked:active{transform:none;box-shadow:0 1px 0 #3d4046 inset,0 7px 0 var(--edge)}
   #muteBtn.live:not(.muted){animation:txpulse 2.4s ease-in-out infinite}
   @keyframes txpulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.08)}}
-
-  /* ---------- footer plate ---------- */
-  .foot{
-    margin-top:14px;padding:10px 10px 4px;border-top:1px solid #2b2d32;
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-  }
-  .foot .sn{font-family:"Space Mono",monospace;font-size:9.5px;letter-spacing:.14em;color:var(--muted)}
-  .foot .credit{font-size:10px;color:#6b6d72;text-align:right;line-height:1.4;max-width:230px}
+  .foot{margin-top:16px;padding:12px 10px 4px;border-top:1px solid #2b2d32;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .foot .sn{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.14em;color:var(--muted)}
+  .foot .credit{font-size:11.5px;color:#6b6d72;text-align:right;line-height:1.45;max-width:280px}
   .foot .credit b{color:var(--phosphor-soft)}
-  .sticker{
-    position:absolute;bottom:-9px;left:50%;transform:translateX(-50%) rotate(-1.4deg);
-    background:#f0e9d6;color:#2a2115;font-family:"Space Mono",monospace;font-size:8.5px;letter-spacing:.05em;
-    padding:3px 9px;border-radius:3px;box-shadow:0 4px 10px rgba(0,0,0,.5);border:1px dashed #b7ad92;white-space:nowrap;
-  }
-
-  .toast{
-    position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);
-    background:#0d0f11;border:1px solid var(--teal);color:var(--teal);
-    font-family:"Space Mono",monospace;font-size:12px;padding:10px 16px;border-radius:10px;
-    box-shadow:0 8px 30px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.25s;z-index:20;letter-spacing:.04em;
-  }
+  .sticker{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%) rotate(-1.4deg);background:#f0e9d6;color:#2a2115;
+    font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.05em;padding:4px 11px;border-radius:3px;box-shadow:0 4px 10px rgba(0,0,0,.5);border:1px dashed #b7ad92;white-space:nowrap}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#0d0f11;border:1px solid var(--teal);color:var(--teal);
+    font-family:"Space Mono",monospace;font-size:13px;padding:11px 18px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.25s;z-index:20;letter-spacing:.03em;max-width:90vw;text-align:center}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   .toast.err{border-color:var(--danger);color:var(--danger)}
-
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important;transition:none !important}
-  }
-  @media (max-width:400px){
-    .plate .model{font-size:12px}
-    #muteBtn{height:88px}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+  @media (max-width:420px){
+    .plate .model{font-size:14px}
+    #codeShow .code{font-size:38px}
+    input.code{font-size:22px}
   }
 </style>
 </head>
@@ -233,17 +141,11 @@
   <main class="device" aria-label="GENIUSLINK transceiver">
     <div class="bezel">
       <div class="leds" aria-hidden="true">
-        <span class="led pwr" title="power"></span>
-        <span class="led tx" id="ledTx" title="transmit"></span>
-        <span class="led err" id="ledErr" title="fault"></span>
+        <span class="led pwr"></span><span class="led tx" id="ledTx"></span><span class="led err" id="ledErr"></span>
       </div>
-      <div class="plate">
-        <div class="model">GENIUSLINK · EG-1</div>
-        <div class="sub">LAN TRANSCEIVER</div>
-      </div>
+      <div class="plate"><div class="model">GENIUSLINK · EG-1</div><div class="sub">LAN TRANSCEIVER</div></div>
     </div>
 
-    <!-- SCREEN -->
     <section class="screen" aria-live="polite">
       <div id="bootlog"></div>
 
@@ -252,75 +154,77 @@
           <span id="statusLine" class="warn">STANDBY</span>
           <span class="rtt" id="rttWrap" style="visibility:hidden">RTT <b id="rtt">--</b> ms</span>
         </div>
-        <div id="vu" aria-hidden="true"></div>
-        <div class="metricrow">
-          <span id="linkMode">LINK: —</span>
-          <span id="signal">SIGNAL: —</span>
-        </div>
+        <div class="vu" id="vu" aria-hidden="true"></div>
+        <div class="metricrow"><span id="linkMode">LINK: —</span><span id="signal">SIGNAL: —</span></div>
+      </div>
+
+      <div id="codeShow" class="hidden">
+        <div class="k">Room code — share with your teammate</div>
+        <div class="code" id="roomCode">·····</div>
+        <div class="wait" id="codeWait">waiting for teammate to join…</div>
       </div>
     </section>
 
-    <!-- STAGE -->
     <div class="stage">
-      <!-- idle -->
       <div id="panelIdle" class="hidden">
-        <p class="prompt">Transceiver ready, legend. One of you <b>hosts</b>, the other <b>joins</b>. You'll swap one code and you're linked — no server, no signup, pure EthanGenius netcode.</p>
-        <div class="row">
+        <p class="prompt">Transceiver ready, legend. One of you <b>hosts</b> and reads out a 5-letter code, the other <b>joins</b> with it. No pasting walls of text, no server you host — pure EthanGenius netcode.</p>
+        <div class="row" style="margin-bottom:12px">
           <button class="btn go" id="btnHost">Host a link</button>
           <button class="btn" id="btnJoin">Join a link</button>
         </div>
+        <div class="gearrow"><button class="gear" data-audio><svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 100 8 4 4 0 000-8zm8.94 4a7.5 7.5 0 00-.12-1.32l2.03-1.58-2-3.46-2.39.96a7.6 7.6 0 00-2.28-1.32L15.5 2h-4l-.68 2.28a7.6 7.6 0 00-2.28 1.32l-2.39-.96-2 3.46 2.03 1.58a7.6 7.6 0 000 2.64L1.14 15.9l2 3.46 2.39-.96a7.6 7.6 0 002.28 1.32L8.5 22h4l.68-2.28a7.6 7.6 0 002.28-1.32l2.39.96 2-3.46-2.03-1.58c.08-.43.12-.87.12-1.32z"/></svg>Audio setup / test</button></div>
       </div>
 
-      <!-- host -->
       <div id="panelHost" class="hidden">
-        <p class="prompt" id="hostPrompt"><b>Step 1.</b> Generating your invite code…</p>
-        <div class="field">
-          <label>Your invite code <span class="tag">TX</span></label>
-          <textarea id="hostOffer" readonly placeholder="working…"></textarea>
-        </div>
-        <div class="row" style="margin-bottom:14px">
-          <button class="btn go" id="copyOffer" disabled>Copy invite code</button>
-        </div>
-        <div class="field">
-          <label>Paste their reply code <span class="tag">RX</span></label>
-          <textarea id="hostAnswerIn" placeholder="paste the reply code your teammate sends back…"></textarea>
-        </div>
+        <p class="prompt" id="hostPrompt"><b>Hosting.</b> Tell your teammate the code on the screen. Stay on this page until they connect.</p>
         <div class="row">
           <button class="btn ghost" id="hostBack">Back</button>
-          <button class="btn go" id="hostLink">Link up</button>
+          <button class="btn sm" data-audio>Audio setup</button>
         </div>
       </div>
 
-      <!-- join -->
       <div id="panelJoin" class="hidden">
-        <p class="prompt"><b>Step 1.</b> Paste the invite code your teammate sent you.</p>
-        <div class="field">
-          <label>Their invite code <span class="tag">RX</span></label>
-          <textarea id="joinOfferIn" placeholder="paste the invite code here…"></textarea>
-        </div>
-        <div class="row" style="margin-bottom:14px">
-          <button class="btn go" id="joinGen">Generate reply code</button>
-        </div>
-        <div class="field">
-          <label>Your reply code — send it back <span class="tag">TX</span></label>
-          <textarea id="joinAnswer" readonly placeholder="appears after you generate…"></textarea>
-        </div>
+        <p class="prompt"><b>Join.</b> Type the 5-letter code your teammate is hosting.</p>
+        <div class="field"><input class="code" id="joinInput" maxlength="5" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABCDE"></div>
+        <div class="row" style="margin-bottom:12px"><button class="btn go" id="joinConnect">Connect</button></div>
         <div class="row">
           <button class="btn ghost" id="joinBack">Back</button>
-          <button class="btn" id="copyAnswer" disabled>Copy reply code</button>
+          <button class="btn sm" data-audio>Audio setup</button>
         </div>
       </div>
 
-      <!-- live -->
+      <div id="panelAudio" class="hidden">
+        <div class="field">
+          <label>Microphone</label>
+          <select id="micSel"><option>Grant mic access to list devices…</option></select>
+        </div>
+        <div class="field">
+          <label>Speaker <span id="spkNote" style="text-transform:none;letter-spacing:0;color:var(--muted)"></span></label>
+          <select id="spkSel"><option>Default output</option></select>
+        </div>
+        <div class="field">
+          <label>Mic test — talk and watch it move</label>
+          <div class="vu" id="vuSetup" style="height:34px" aria-hidden="true"></div>
+        </div>
+        <div class="toggle">
+          <div class="lab">Hear myself<small>Loops your mic to the speaker. Use headphones or it'll echo.</small></div>
+          <label class="switch"><input type="checkbox" id="monitorChk"><span class="sl"></span></label>
+        </div>
+        <div class="row" style="margin-bottom:12px">
+          <button class="btn sm" id="testTone">Test speaker tone</button>
+        </div>
+        <div class="row"><button class="btn go" id="audioDone">Done</button></div>
+      </div>
+
       <div id="panelLive" class="hidden">
-        <p class="prompt" id="livePrompt">Link established. Big button below is your mic — tap it to mute.</p>
+        <p class="prompt" id="livePrompt">Link established. The big button below is your mic — tap it (or press <b>M</b>) to mute.</p>
         <div class="row">
           <button class="btn ghost" id="btnReset">End link</button>
+          <button class="btn sm" data-audio>Audio setup</button>
         </div>
       </div>
     </div>
 
-    <!-- TRANSMIT BUTTON -->
     <div class="txwrap">
       <button id="muteBtn" class="locked" aria-pressed="false" disabled>
         <span class="lbl" id="muteLbl">STANDBY</span>
@@ -340,350 +244,250 @@
 
 <script>
 "use strict";
-
-/* ---------------- config ---------------- */
-const RTC_CONFIG = {
-  iceServers: [
-    { urls: "stun:stun.l.google.com:19302" },
-    { urls: "stun:stun1.l.google.com:19302" }
-  ]
-};
-
-/* ---------------- refs ---------------- */
-const $ = id => document.getElementById(id);
-const bootlog=$("bootlog"), liveScreen=$("liveScreen");
+const $=id=>document.getElementById(id);
+const bootlog=$("bootlog"), liveScreen=$("liveScreen"), codeShow=$("codeShow");
 const statusLine=$("statusLine"), rtt=$("rtt"), rttWrap=$("rttWrap");
-const vu=$("vu"), linkMode=$("linkMode"), signal=$("signal");
-const panels={idle:$("panelIdle"),host:$("panelHost"),join:$("panelJoin"),live:$("panelLive")};
+const vu=$("vu"), vuSetup=$("vuSetup"), linkMode=$("linkMode"), signal=$("signal");
 const muteBtn=$("muteBtn"), muteLbl=$("muteLbl"), muteHint=$("muteHint");
-const ledTx=$("ledTx"), ledErr=$("ledErr");
-const toastEl=$("toast");
+const ledTx=$("ledTx"), ledErr=$("ledErr"), toastEl=$("toast"), remoteAudio=$("remoteAudio");
+const micSel=$("micSel"), spkSel=$("spkSel"), spkNote=$("spkNote"), monitorChk=$("monitorChk");
+const panels={idle:$("panelIdle"),host:$("panelHost"),join:$("panelJoin"),audio:$("panelAudio"),live:$("panelLive")};
 
-/* ---------------- state ---------------- */
-let pc=null, localStream=null, remoteStream=null;
-let muted=false, pingTimer=null, audioCtx=null, analyser=null, rafId=null;
+const AUD={echoCancellation:true,noiseSuppression:true,autoGainControl:true};
+let peer=null, currentCall=null, localStream=null, remoteStream=null;
+let muted=false, pingTimer=null, rafId=null;
+let audioCtx=null, analyser=null, meterSrc=null, monitorSrc=null;
+let selectedMic="", selectedSpeaker="", prevPanel="idle", hostCode="";
 
-/* ---------------- helpers ---------------- */
-function showPanel(name){
-  for(const k in panels) panels[k].classList.toggle("hidden", k!==name);
-}
-function setStatus(text, cls){
-  statusLine.textContent=text;
-  statusLine.className=cls||"warn";
-}
-let toastT=null;
-function toast(msg, isErr){
-  toastEl.textContent=msg;
-  toastEl.classList.toggle("err", !!isErr);
-  toastEl.classList.add("show");
-  clearTimeout(toastT);
-  toastT=setTimeout(()=>toastEl.classList.remove("show"), 2600);
-}
-const supportsCompression = typeof CompressionStream!=="undefined" && typeof DecompressionStream!=="undefined";
+function showPanel(n){ for(const k in panels) panels[k].classList.toggle("hidden", k!==n); }
+function setStatus(t,c){ statusLine.textContent=t; statusLine.className=c||"warn"; }
+function showLiveScreen(){ bootlog.classList.add("hidden"); codeShow.classList.add("hidden"); liveScreen.classList.remove("hidden"); }
+let toastT; function toast(m,e){ toastEl.textContent=m; toastEl.classList.toggle("err",!!e); toastEl.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>toastEl.classList.remove("show"),3000); }
+function code5(){ const A="ABCDEFGHJKMNPQRSTUVWXYZ23456789"; let s=""; for(let i=0;i<5;i++) s+=A[Math.floor(Math.random()*A.length)]; return s; }
 
-function b64FromBytes(bytes){
-  let bin="", chunk=0x8000;
-  for(let i=0;i<bytes.length;i+=chunk) bin+=String.fromCharCode.apply(null, bytes.subarray(i,i+chunk));
-  return btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
-}
-function bytesFromB64(s){
-  s=s.replace(/-/g,"+").replace(/_/g,"/"); while(s.length%4) s+="=";
-  const bin=atob(s), out=new Uint8Array(bin.length);
-  for(let i=0;i<bin.length;i++) out[i]=bin.charCodeAt(i);
-  return out;
-}
-async function encode(obj){
-  const json=JSON.stringify({t:obj.type, s:obj.sdp});
-  if(supportsCompression){
-    const stream=new Blob([json]).stream().pipeThrough(new CompressionStream("gzip"));
-    const buf=await new Response(stream).arrayBuffer();
-    return "EG1:"+b64FromBytes(new Uint8Array(buf));
-  }
-  return "EG0:"+b64FromBytes(new TextEncoder().encode(json));
-}
-async function decode(code){
-  code=(code||"").trim();
-  if(code.startsWith("EG1:")){
-    const bytes=bytesFromB64(code.slice(4));
-    const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
-    const text=await new Response(stream).text();
-    const o=JSON.parse(text); return {type:o.t, sdp:o.s};
-  }
-  if(code.startsWith("EG0:")){
-    const text=new TextDecoder().decode(bytesFromB64(code.slice(4)));
-    const o=JSON.parse(text); return {type:o.t, sdp:o.s};
-  }
-  throw new Error("bad code");
-}
-function waitForIce(pc){
-  return new Promise(res=>{
-    if(pc.iceGatheringState==="complete") return res();
-    const done=()=>{ pc.removeEventListener("icegatheringstatechange",check); res(); };
-    function check(){ if(pc.iceGatheringState==="complete") done(); }
-    pc.addEventListener("icegatheringstatechange",check);
-    setTimeout(done, 3000); // vanilla-ICE: proceed with what we have
-  });
-}
-
-/* ---------------- mic ---------------- */
-async function getMic(){
-  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-    throw new Error("insecure");
-  }
-  localStream = await navigator.mediaDevices.getUserMedia({
-    audio:{ echoCancellation:true, noiseSuppression:true, autoGainControl:true },
-    video:false
-  });
-  startMeter(localStream);
-  return localStream;
-}
-function startMeter(stream){
+function ctx(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==="suspended") audioCtx.resume(); return audioCtx; }
+function restartMeter(stream){
   try{
-    audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    const src=audioCtx.createMediaStreamSource(stream);
-    analyser=audioCtx.createAnalyser();
-    analyser.fftSize=64; analyser.smoothingTimeConstant=0.75;
-    src.connect(analyser); // note: NOT connected to destination (no local echo)
-    const bins=analyser.frequencyBinCount, data=new Uint8Array(bins);
-    const bars=vu.querySelectorAll("i");
-    const loop=()=>{
-      analyser.getByteFrequencyData(data);
+    const c=ctx();
+    if(meterSrc){ try{meterSrc.disconnect()}catch(e){} }
+    meterSrc=c.createMediaStreamSource(stream);
+    analyser=c.createAnalyser(); analyser.fftSize=64; analyser.smoothingTimeConstant=0.75;
+    meterSrc.connect(analyser);
+    if(!rafId) drawMeter();
+    if(monitorChk.checked) setMonitor(true);
+  }catch(e){}
+}
+function drawMeter(){
+  const bins=analyser?analyser.frequencyBinCount:32, data=new Uint8Array(bins);
+  const targets=[vu,vuSetup];
+  const loop=()=>{
+    if(analyser) analyser.getByteFrequencyData(data);
+    targets.forEach(t=>{
+      const bars=t.querySelectorAll("i"); if(!bars.length) return;
       const step=Math.floor(bins/bars.length)||1;
       for(let i=0;i<bars.length;i++){
-        let v=data[i*step]/255;
-        const h= muted ? 0.12 : Math.max(0.12, Math.min(1, v*1.6));
-        bars[i].style.height=(h*100)+"%";
-        bars[i].style.opacity = muted ? .22 : (0.3+h*0.7);
+        const v=analyser?data[i*step]/255:0;
+        const h=muted?0.12:Math.max(0.12,Math.min(1,v*1.7));
+        bars[i].style.height=(h*100)+"%"; bars[i].style.opacity=muted?.22:(0.3+h*0.7);
       }
-      rafId=requestAnimationFrame(loop);
-    };
-    loop();
-  }catch(e){ /* meter is cosmetic */ }
+    });
+    rafId=requestAnimationFrame(loop);
+  }; loop();
+}
+function setMonitor(on){
+  try{
+    const c=ctx();
+    if(on){ if(!localStream) return; if(monitorSrc){try{monitorSrc.disconnect()}catch(e){}} monitorSrc=c.createMediaStreamSource(localStream); monitorSrc.connect(c.destination); }
+    else if(monitorSrc){ monitorSrc.disconnect(); monitorSrc=null; }
+  }catch(e){}
 }
 
-/* ---------------- peer setup ---------------- */
-function newPeer(){
-  const p=new RTCPeerConnection(RTC_CONFIG);
-  p.ontrack=e=>{
-    remoteStream=e.streams[0];
-    const a=$("remoteAudio");
-    a.srcObject=remoteStream;
-    a.play&&a.play().catch(()=>{});
-  };
-  p.onconnectionstatechange=()=>{
-    const s=p.connectionState;
-    if(s==="connecting"){ setStatus("LINKING…","warn"); }
-    else if(s==="connected"){ goLive(); }
-    else if(s==="failed"){ setStatus("LINK FAILED","bad"); ledErr.classList.add("on"); toast("Link failed. Regenerate codes.",true); }
-    else if(s==="disconnected"||s==="closed"){ setStatus("LINK LOST","bad"); ledErr.classList.add("on"); }
-  };
+async function ensureMic(){
+  if(localStream && localStream.active) return localStream;
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ const e=new Error("insecure"); e.code="insecure"; throw e; }
+  const a=Object.assign({},AUD); if(selectedMic) a.deviceId={exact:selectedMic};
+  localStream=await navigator.mediaDevices.getUserMedia({audio:a,video:false});
+  localStream.getAudioTracks()[0].enabled=!muted;
+  restartMeter(localStream);
+  await populateDevices();
+  return localStream;
+}
+async function populateDevices(){
+  try{
+    const devs=await navigator.mediaDevices.enumerateDevices();
+    const mics=devs.filter(d=>d.kind==="audioinput"), spks=devs.filter(d=>d.kind==="audiooutput");
+    micSel.innerHTML=""; mics.forEach((d,i)=>{ const o=document.createElement("option"); o.value=d.deviceId; o.textContent=d.label||("Microphone "+(i+1)); micSel.appendChild(o); });
+    if(!selectedMic && localStream){ const t=localStream.getAudioTracks()[0]; const id=t.getSettings&&t.getSettings().deviceId; if(id){ selectedMic=id; micSel.value=id; } } else if(selectedMic){ micSel.value=selectedMic; }
+    const canSink="setSinkId" in HTMLMediaElement.prototype;
+    if(canSink){ spkSel.disabled=false; spkNote.textContent=""; spkSel.innerHTML=""; if(!spks.length){ const o=document.createElement("option"); o.textContent="Default output"; spkSel.appendChild(o);} spks.forEach((d,i)=>{ const o=document.createElement("option"); o.value=d.deviceId; o.textContent=d.label||("Speaker "+(i+1)); spkSel.appendChild(o); }); if(selectedSpeaker) spkSel.value=selectedSpeaker; }
+    else { spkSel.disabled=true; spkNote.textContent="(browser picks output — Chrome/Edge let you choose)"; }
+  }catch(e){}
+}
+async function setMic(id){
+  selectedMic=id;
+  try{
+    const a=Object.assign({},AUD,{deviceId:{exact:id}});
+    const ns=await navigator.mediaDevices.getUserMedia({audio:a,video:false});
+    const nt=ns.getAudioTracks()[0]; nt.enabled=!muted;
+    if(currentCall && currentCall.peerConnection){ const s=currentCall.peerConnection.getSenders().find(x=>x.track&&x.track.kind==="audio"); if(s) await s.replaceTrack(nt); }
+    if(localStream) localStream.getTracks().forEach(t=>t.stop());
+    setMonitor(false); localStream=ns; restartMeter(localStream); if(monitorChk.checked) setMonitor(true);
+    toast("Mic switched ✓");
+  }catch(e){ toast("Couldn't switch mic.",true); }
+}
+async function setSpeaker(id){
+  selectedSpeaker=id;
+  if(remoteAudio.setSinkId){ try{ await remoteAudio.setSinkId(id); toast("Speaker switched ✓"); }catch(e){ toast("Couldn't switch speaker.",true); } }
+}
+async function testTone(){
+  try{
+    const c=ctx(); const dest=c.createMediaStreamDestination();
+    const osc=c.createOscillator(), g=c.createGain(); osc.type="sine"; osc.frequency.value=523;
+    osc.connect(g); g.connect(dest);
+    const a=new Audio(); a.srcObject=dest.stream;
+    if(a.setSinkId && selectedSpeaker){ try{ await a.setSinkId(selectedSpeaker);}catch(e){} }
+    const t=c.currentTime; g.gain.setValueAtTime(0.0001,t);
+    g.gain.exponentialRampToValueAtTime(0.25,t+0.04); g.gain.exponentialRampToValueAtTime(0.0001,t+0.5);
+    osc.start(); await a.play().catch(()=>{});
+    setTimeout(()=>{try{osc.stop()}catch(e){}}, 600);
+    toast("🔊 Hear that beep? Output works.");
+  }catch(e){ toast("Couldn't play test tone.",true); }
+}
+
+function peerReady(){ return typeof Peer!=="undefined"; }
+function newPeer(id){
+  const p=id?new Peer("eglink-"+id,{debug:1}):new Peer({debug:1});
+  p.on("disconnected",()=>{ try{p.reconnect()}catch(e){} });
   return p;
 }
-
-/* ---------------- host flow ---------------- */
-async function startHost(){
-  try{
-    showPanel("host");
-    setStatus("HOSTING…","warn");
-    pc=newPeer();
-    const stream=await getMic();
-    stream.getTracks().forEach(t=>pc.addTrack(t,stream));
-    const offer=await pc.createOffer();
-    await pc.setLocalDescription(offer);
-    await waitForIce(pc);
-    $("hostOffer").value=await encode(pc.localDescription);
-    $("copyOffer").disabled=false;
-    $("hostPrompt").innerHTML="<b>Step 1.</b> Copy this and send it to your teammate. <b>Step 2.</b> Paste the reply they send back, then hit Link up.";
-  }catch(err){ micError(err); }
+async function startHost(retry){
+  if(!peerReady()) return brokerDown();
+  try{ await ensureMic(); }catch(e){ return micError(e); }
+  hostCode=code5();
+  showPanel("host");
+  bootlog.classList.add("hidden"); liveScreen.classList.add("hidden"); codeShow.classList.remove("hidden");
+  $("roomCode").textContent=hostCode; $("codeWait").textContent="connecting to matchmaker…";
+  setStatus("HOSTING","warn");
+  peer=newPeer(hostCode);
+  peer.on("open",()=>{ $("codeWait").textContent="waiting for teammate to join…"; setStatus("WAITING","warn"); });
+  peer.on("call",async call=>{ try{ const s=await ensureMic(); call.answer(s); currentCall=call; wireCall(call); setStatus("LINKING…","warn"); }catch(e){ micError(e);} });
+  peer.on("error",err=>onPeerError(err,retry));
 }
-async function hostLink(){
-  const code=$("hostAnswerIn").value.trim();
-  if(!code) return toast("Paste their reply code first.",true);
-  try{
-    const answer=await decode(code);
-    await pc.setRemoteDescription(answer);
-    setStatus("LINKING…","warn");
-    toast("Reply accepted — linking…");
-  }catch(err){ toast("RX code rejected. That's not a valid reply. Classic asharam.",true); }
+async function startJoin(){
+  if(!peerReady()) return brokerDown();
+  const code=($("joinInput").value||"").trim().toUpperCase();
+  if(code.length<5) return toast("Enter the full 5-letter code.",true);
+  try{ await ensureMic(); }catch(e){ return micError(e); }
+  setStatus("JOINING…","warn"); toast("Dialing "+code+"…");
+  peer=newPeer(null);
+  peer.on("open",()=>{ const call=peer.call("eglink-"+code,localStream); if(!call) return toast("Call failed — check the code.",true); currentCall=call; wireCall(call); });
+  peer.on("error",err=>onPeerError(err));
 }
-
-/* ---------------- join flow ---------------- */
-async function joinGenerate(){
-  const code=$("joinOfferIn").value.trim();
-  if(!code) return toast("Paste their invite code first.",true);
-  try{
-    showPanelKeepInput();
-    setStatus("JOINING…","warn");
-    pc=newPeer();
-    const stream=await getMic();
-    stream.getTracks().forEach(t=>pc.addTrack(t,stream));
-    const offer=await decode(code);
-    await pc.setRemoteDescription(offer);
-    const answer=await pc.createAnswer();
-    await pc.setLocalDescription(answer);
-    await waitForIce(pc);
-    $("joinAnswer").value=await encode(pc.localDescription);
-    $("copyAnswer").disabled=false;
-    toast("Reply code ready — send it back.");
-  }catch(err){
-    if(err&&err.message==="insecure") return micError(err);
-    toast("Invite code rejected. Bad or incomplete code.",true);
-  }
+function wireCall(call){
+  call.on("stream",remote=>{ remoteStream=remote; remoteAudio.srcObject=remote; if(selectedSpeaker&&remoteAudio.setSinkId){remoteAudio.setSinkId(selectedSpeaker).catch(()=>{});} remoteAudio.play&&remoteAudio.play().catch(()=>{}); goLive(); });
+  call.on("close",()=>{ if(!panels.live.classList.contains("hidden")){ setStatus("LINK LOST","bad"); ledErr.classList.add("on"); toast("Teammate dropped.",true);} });
+  call.on("error",()=>{});
 }
-function showPanelKeepInput(){ /* stay on join panel */ }
+function onPeerError(err,retry){
+  const t=err&&err.type;
+  if(t==="unavailable-id"){ toast("Code collision — grabbing a new one.",true); try{peer.destroy()}catch(e){} return startHost(true); }
+  if(t==="peer-unavailable"){ setStatus("CODE NOT FOUND","bad"); ledErr.classList.add("on"); toast("No host on that code. Check it, and that they hit Host first.",true); return; }
+  if(t==="browser-incompatible"){ toast("This browser can't do WebRTC voice.",true); return; }
+  if(t==="network"||t==="server-error"||t==="socket-error"||t==="socket-closed"){ return brokerDown(); }
+  toast("Link error: "+(t||"unknown"),true);
+}
+function brokerDown(){ setStatus("BROKER OFFLINE","bad"); ledErr.classList.add("on"); toast("Matchmaker unreachable. Retry in a moment.",true); }
 
-/* ---------------- go live ---------------- */
 function goLive(){
-  if(!liveScreen.classList.contains("hidden") && !panels.live.classList.contains("hidden")) return;
-  bootlog.classList.add("hidden");
-  liveScreen.classList.remove("hidden");
-  showPanel("live");
-  ledErr.classList.remove("on");
-  setStatus("LINK ESTABLISHED","good");
-  linkMode.textContent="LINK: P2P DIRECT";
-  signal.textContent="SIGNAL: STRONG";
+  showLiveScreen(); showPanel("live");
+  ledErr.classList.remove("on"); setStatus("LINK ESTABLISHED","good");
+  linkMode.textContent="LINK: P2P DIRECT"; signal.textContent="SIGNAL: STRONG";
   rttWrap.style.visibility="visible";
-  // unlock mute
-  muted=false;
-  muteBtn.disabled=false;
-  muteBtn.classList.remove("locked");
-  muteBtn.classList.add("live");
-  ledTx.classList.add("on");
-  vu.classList.remove("muted");
-  muteLbl.textContent="LIVE MIC";
-  muteHint.textContent="tap to mute";
-  muteBtn.setAttribute("aria-pressed","false");
-  startPing();
-  toast("Locked in. Genius-grade link up. 🎧");
+  muted=false; muteBtn.disabled=false; muteBtn.className="live"; ledTx.classList.add("on"); vu.classList.remove("muted");
+  muteLbl.textContent="LIVE MIC"; muteHint.textContent="tap to mute"; muteBtn.setAttribute("aria-pressed","false");
+  startPing(); toast("Locked in. Genius-grade link up. 🎧");
 }
 function startPing(){
   clearInterval(pingTimer);
-  pingTimer=setInterval(async ()=>{
-    if(!pc) return;
-    try{
-      const stats=await pc.getStats();
-      let ms=null, kind="—";
-      stats.forEach(r=>{
-        if(r.type==="candidate-pair" && (r.nominated||r.state==="succeeded") && r.currentRoundTripTime!=null){
-          ms=Math.round(r.currentRoundTripTime*1000);
-        }
-        if(r.type==="local-candidate" && r.candidateType) kind=r.candidateType;
-      });
-      if(ms!=null){
-        rtt.textContent=ms;
-        signal.textContent = ms<8?"SIGNAL: ELITE" : ms<40?"SIGNAL: STRONG" : "SIGNAL: OK";
-      }
+  pingTimer=setInterval(async()=>{
+    const pc=currentCall&&currentCall.peerConnection; if(!pc) return;
+    try{ const stats=await pc.getStats(); let ms=null;
+      stats.forEach(r=>{ if(r.type==="candidate-pair" && r.currentRoundTripTime!=null && (r.nominated||r.state==="succeeded")) ms=Math.round(r.currentRoundTripTime*1000); });
+      if(ms!=null){ rtt.textContent=ms; signal.textContent=ms<8?"SIGNAL: ELITE":ms<40?"SIGNAL: STRONG":"SIGNAL: OK"; }
     }catch(e){}
   },1000);
 }
 
-/* ---------------- mute ---------------- */
 function toggleMute(){
-  if(!localStream || muteBtn.disabled) return;
-  const track=localStream.getAudioTracks()[0];
-  if(!track) return;
-  muted=!muted;
-  track.enabled=!muted;
-  muteBtn.classList.toggle("muted",muted);
-  vu.classList.toggle("muted",muted);
+  if(!localStream||muteBtn.disabled) return;
+  const track=localStream.getAudioTracks()[0]; if(!track) return;
+  muted=!muted; track.enabled=!muted;
+  muteBtn.classList.toggle("muted",muted); vu.classList.toggle("muted",muted); vuSetup.classList.toggle("muted",muted);
   ledTx.classList.toggle("on",!muted);
-  muteLbl.textContent = muted?"MUTED":"LIVE MIC";
-  muteHint.textContent = muted?"asharam mode engaged":"tap to unmute";
-  muteBtn.setAttribute("aria-pressed", muted?"true":"false");
-  setStatus(muted?"MIC MUTED":"LINK ESTABLISHED", muted?"warn":"good");
+  muteLbl.textContent=muted?"MUTED":"LIVE MIC"; muteHint.textContent=muted?"asharam mode engaged":"tap to unmute";
+  muteBtn.setAttribute("aria-pressed",muted?"true":"false");
+  setStatus(muted?"MIC MUTED":"LINK ESTABLISHED",muted?"warn":"good");
 }
 
-/* ---------------- reset ---------------- */
 function resetAll(){
-  try{ if(pc) pc.close(); }catch(e){}
+  try{ if(currentCall) currentCall.close(); }catch(e){}
+  try{ if(peer) peer.destroy(); }catch(e){}
   try{ if(localStream) localStream.getTracks().forEach(t=>t.stop()); }catch(e){}
-  clearInterval(pingTimer); cancelAnimationFrame(rafId);
-  try{ if(audioCtx) audioCtx.close(); }catch(e){}
-  pc=null; localStream=null; remoteStream=null; muted=false; audioCtx=null; analyser=null;
-  $("hostOffer").value=""; $("hostAnswerIn").value=""; $("joinOfferIn").value=""; $("joinAnswer").value="";
-  $("copyOffer").disabled=true; $("copyAnswer").disabled=true;
+  setMonitor(false); monitorChk.checked=false;
+  clearInterval(pingTimer);
+  peer=null; currentCall=null; localStream=null; remoteStream=null; muted=false; hostCode="";
   ledTx.classList.remove("on"); ledErr.classList.remove("on");
   rttWrap.style.visibility="hidden"; rtt.textContent="--";
-  muteBtn.disabled=true; muteBtn.className="locked";
-  muteLbl.textContent="STANDBY"; muteHint.textContent="no link yet";
-  liveScreen.classList.add("hidden");
-  showPanel("idle");
+  muteBtn.disabled=true; muteBtn.className="locked"; muteLbl.textContent="STANDBY"; muteHint.textContent="no link yet";
+  liveScreen.classList.add("hidden"); codeShow.classList.add("hidden"); bootlog.classList.remove("hidden");
+  $("joinInput").value=""; showPanel("idle"); setStatus("STANDBY","warn");
 }
 
-/* ---------------- copy ---------------- */
-async function copyFrom(elId, label){
-  const el=$(elId);
-  try{ await navigator.clipboard.writeText(el.value); }
-  catch(e){ el.removeAttribute("readonly"); el.select(); document.execCommand&&document.execCommand("copy"); el.setAttribute("readonly",""); }
-  toast(label+" copied ✓");
+async function openAudio(){
+  for(const k in panels){ if(!panels[k].classList.contains("hidden")){ prevPanel=k; break; } }
+  showPanel("audio");
+  try{ await ensureMic(); }catch(e){ micError(e); }
 }
+function closeAudio(){ showPanel(prevPanel||"idle"); }
 
 function micError(err){
   ledErr.classList.add("on");
-  if(err&&err.message==="insecure"){
+  if(err&&err.code==="insecure"){
     setStatus("MIC BLOCKED","bad");
-    toast("Mic needs https or localhost. Host this file, don't open it directly.",true);
-    bootlog.classList.remove("hidden");
-    liveScreen.classList.add("hidden");
-    bootlog.innerHTML='<span style="color:var(--danger)">FAULT: microphone unavailable.</span>\nThis page must run over <b>https</b> or <b>http://localhost</b>.\nDrop it on GitHub Pages / Netlify, or serve it locally, then reload.';
+    toast("Mic needs https or localhost — host the file, don't open it directly.",true);
+    bootlog.classList.remove("hidden"); liveScreen.classList.add("hidden"); codeShow.classList.add("hidden");
+    bootlog.innerHTML='<span style="color:var(--danger)">FAULT: microphone unavailable.</span>\nRun this over <b>https</b> or <b>http://localhost</b>.\nDrop it on Netlify / GitHub Pages, or serve it locally, then reload.';
     showPanel("idle");
-  }else{
-    setStatus("MIC DENIED","bad");
-    toast("Mic permission denied. Allow the mic and retry.",true);
-    showPanel("idle");
-  }
+  } else { setStatus("MIC DENIED","bad"); toast("Mic permission denied. Allow it and retry.",true); }
 }
 
-/* ---------------- boot sequence ---------------- */
-const BOOT=[
-  ["EG-OS v4.8  //  build by EthanGenius",0],
-  ["init transceiver core ............ OK","ok"],
-  ["loading superior netcode ......... OK","ok"],
-  ["scanning for asharam's code ...... none found",0],
-  ["calibrating genius ............... 100%","ok"],
-  ["LAN link ready.",0]
-];
+const BOOT=[["EG-OS v4.8  //  build by EthanGenius",0],["init transceiver core ............ OK","ok"],["loading superior netcode ......... OK","ok"],["scanning for asharam's code ...... none found",0],["calibrating genius ............... 100%","ok"],["LAN link ready.",0]];
 function runBoot(){
   const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if(reduce){
-    bootlog.innerHTML=BOOT.map(l=>l[1]==="ok"?`<span class="ok">${l[0]}</span>`:l[0]).join("\n");
-    return finishBoot();
-  }
+  if(reduce){ bootlog.innerHTML=BOOT.map(l=>l[1]==="ok"?`<span class="ok">${l[0]}</span>`:l[0]).join("\n"); return showPanel("idle"); }
   let i=0; bootlog.textContent="";
-  (function next(){
-    if(i>=BOOT.length){ setTimeout(finishBoot,350); return; }
-    const [txt,cls]=BOOT[i++];
-    const span=document.createElement("div");
-    if(cls==="ok") span.className="ok";
-    span.textContent=txt;
-    bootlog.appendChild(span);
-    setTimeout(next, 260);
-  })();
+  (function next(){ if(i>=BOOT.length){ setTimeout(()=>showPanel("idle"),300); return; } const [txt,cls]=BOOT[i++]; const d=document.createElement("div"); if(cls==="ok") d.className="ok"; d.textContent=txt; bootlog.appendChild(d); setTimeout(next,240); })();
 }
-function finishBoot(){ showPanel("idle"); }
 
-/* ---------------- wire up ---------------- */
-function buildVU(){ for(let i=0;i<14;i++){ vu.appendChild(document.createElement("i")); } }
+function buildVU(el,n){ for(let i=0;i<n;i++) el.appendChild(document.createElement("i")); }
+buildVU(vu,16); buildVU(vuSetup,20);
 
-$("btnHost").onclick=startHost;
-$("btnJoin").onclick=()=>{ showPanel("join"); setStatus("STANDBY","warn"); };
-$("hostBack").onclick=resetAll;
-$("joinBack").onclick=resetAll;
-$("btnReset").onclick=resetAll;
-$("hostLink").onclick=hostLink;
-$("joinGen").onclick=joinGenerate;
-$("copyOffer").onclick=()=>copyFrom("hostOffer","Invite code");
-$("copyAnswer").onclick=()=>copyFrom("joinAnswer","Reply code");
+$("btnHost").onclick=()=>startHost(false);
+$("btnJoin").onclick=()=>{ showPanel("join"); setStatus("STANDBY","warn"); $("joinInput").focus(); };
+$("joinConnect").onclick=startJoin;
+$("joinInput").addEventListener("keydown",e=>{ if(e.key==="Enter") startJoin(); });
+$("joinInput").addEventListener("input",e=>{ e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,""); });
+$("hostBack").onclick=resetAll; $("joinBack").onclick=resetAll; $("btnReset").onclick=resetAll;
+$("audioDone").onclick=closeAudio;
+$("testTone").onclick=testTone;
+micSel.onchange=e=>setMic(e.target.value);
+spkSel.onchange=e=>setSpeaker(e.target.value);
+monitorChk.onchange=e=>setMonitor(e.target.checked);
 muteBtn.onclick=toggleMute;
+document.querySelectorAll("[data-audio]").forEach(b=>b.onclick=openAudio);
+document.addEventListener("keydown",e=>{ if((e.key==="m"||e.key==="M")&&!muteBtn.disabled&&document.activeElement.tagName!=="INPUT"&&document.activeElement.tagName!=="SELECT") toggleMute(); });
 
-// keyboard: M to mute when live
-document.addEventListener("keydown",e=>{
-  if((e.key==="m"||e.key==="M") && !muteBtn.disabled && document.activeElement.tagName!=="TEXTAREA"){ toggleMute(); }
-});
-// tap boot log to skip
-bootlog.addEventListener("click",()=>{ if(!panels.idle) return; });
-
-buildVU();
+if(!peerReady()){ toast("Matchmaker library didn't load — check your connection.",true); }
 runBoot();
 </script>
 </body>
